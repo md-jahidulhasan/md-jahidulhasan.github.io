@@ -1,127 +1,1060 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Md. Jahidul Hasan - Software Engineer</title>
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, Helvetica, sans-serif;
-            background: #f4f4f4;
-            color: #333;
-        }
-        header {
-            background: #1a73e8;
-            color: white;
-            padding: 40px 20px;
-            text-align: center;
-        }
-        header h1 {
-            font-size: 36px;
-            margin: 0;
-        }
-        header p {
-            margin-top: 10px;
-            font-size: 18px;
-        }
-        .container {
-            width: 90%;
-            max-width: 900px;
-            margin: auto;
-            padding: 30px 0;
-        }
-        section {
-            background: white;
-            padding: 25px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.08);
-        }
-        h2 {
-            margin-top: 0;
-            color: #1a73e8;
-        }
-        ul {
-            padding-left: 20px;
-        }
-        .footer {
-            text-align: center;
-            padding: 15px;
-            background: #222;
-            color: #eee;
-            margin-top: 30px;
-            font-size: 14px;
-        }
-        a {
-            color: #1a73e8;
-            text-decoration: none;
-            font-weight: bold;
-        }
-        a:hover {
-            text-decoration: underline;
-        }
-        .badge-list span {
-            display: inline-block;
-            background: #e3f2fd;
-            color: #0d47a1;
-            padding: 6px 10px;
-            margin: 4px 4px 0 0;
-            border-radius: 999px;
-            font-size: 13px;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Md. Jahidul Hasan Shakil - Principal Software Engineer</title>
+  <meta name="description"
+        content="Portfolio of Md. Jahidul Hasan Shakil, Principal Software Engineer at Orbitax Bangladesh, specializing in microservices, software architecture, .NET, Angular, and competitive programming." />
+  <style>
+    :root {
+      --bg: #020617;
+      --bg-elevated: #020617;
+      --bg-soft: #020617;
+      --panel: #020617;
+      --accent: #3b82f6;
+      --accent-soft: rgba(59, 130, 246, 0.12);
+      --accent-strong: #2563eb;
+      --text: #e5e7eb;
+      --text-muted: #9ca3af;
+      --border-subtle: rgba(148, 163, 184, 0.28);
+      --radius-card: 18px;
+      --shadow-soft: 0 24px 60px rgba(15, 23, 42, 0.95);
+    }
+
+    * {
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+      background:
+        radial-gradient(circle at top, #0b1120 0, #020617 45%, #000 100%);
+      color: var(--text);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* NAVBAR */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(18px);
+      background: linear-gradient(
+        to bottom,
+        rgba(15, 23, 42, 0.97),
+        rgba(15, 23, 42, 0.86)
+      );
+      border-bottom: 1px solid rgba(31, 41, 55, 0.9);
+    }
+
+    .nav-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0.6rem 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-brand {
+      display: flex;
+      flex-direction: column;
+      gap: 0.1rem;
+    }
+
+    .nav-brand-name {
+      font-weight: 650;
+      letter-spacing: 0.04em;
+      font-size: 0.95rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+    }
+
+    .nav-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 999px;
+      background: var(--accent);
+      box-shadow: 0 0 18px rgba(59, 130, 246, 0.9);
+    }
+
+    .nav-brand-title {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.3rem;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    .nav-links a:hover {
+      color: var(--accent);
+    }
+
+    .nav-toggle {
+      display: none;
+      width: 30px;
+      height: 30px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      background: transparent;
+      color: var(--text);
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+
+    /* MAIN LAYOUT */
+    .outer {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 1.7rem 1.25rem 3.5rem;
+    }
+
+    section {
+      margin-top: 2.8rem;
+    }
+
+    h2.section-title {
+      font-size: 1.25rem;
+      margin: 0 0 0.45rem;
+      color: #e5e7eb;
+    }
+
+    .section-subtitle {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 1.25rem;
+    }
+
+    .card {
+      background:
+        radial-gradient(circle at top left, #020617, #000 55%);
+      border-radius: var(--radius-card);
+      border: 1px solid var(--border-subtle);
+      box-shadow: var(--shadow-soft);
+      padding: 1.7rem 1.6rem;
+    }
+
+    .card-soft {
+      background: rgba(15, 23, 42, 0.97);
+      border-radius: var(--radius-card);
+      border: 1px solid rgba(55, 65, 81, 0.9);
+      box-shadow: 0 18px 50px rgba(0, 0, 0, 0.7);
+      padding: 1.4rem 1.3rem;
+    }
+
+    .layout-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 2.3fr) minmax(0, 1.6fr);
+      gap: 2rem;
+      margin-top: 1.7rem;
+      align-items: flex-start;
+    }
+
+    /* HERO */
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.7fr) minmax(0, 1.3fr);
+      gap: 1.8rem;
+      align-items: center;
+    }
+
+    .headline-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.28rem 0.7rem;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      background: var(--accent-soft);
+      border: 1px solid rgba(59, 130, 246, 0.5);
+      color: var(--text);
+      margin-bottom: 0.9rem;
+    }
+
+    .headline-tag-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: #22c55e;
+      box-shadow: 0 0 12px #22c55e;
+    }
+
+    .hero-name {
+      font-size: clamp(2rem, 3vw, 2.5rem);
+      font-weight: 700;
+      margin: 0 0 0.25rem;
+      letter-spacing: 0.03em;
+    }
+
+    .hero-title-line {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      margin-bottom: 0.6rem;
+    }
+
+    .hero-location {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+    }
+
+    .hero-about {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      max-width: 34rem;
+      margin-bottom: 1.4rem;
+    }
+
+    .hero-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+      margin-bottom: 1.3rem;
+    }
+
+    .chip {
+      font-size: 0.75rem;
+      padding: 0.25rem 0.6rem;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.95);
+      border: 1px solid rgba(75, 85, 99, 0.9);
+      color: var(--text-muted);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+    }
+
+    .btn {
+      font-size: 0.85rem;
+      padding: 0.55rem 1.2rem;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #2563eb, #4f46e5);
+      color: white;
+      box-shadow: 0 12px 28px rgba(37, 99, 235, 0.45);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--text);
+      border-color: var(--border-subtle);
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 14px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    .hero-photo-wrapper {
+      display: flex;
+      justify-content: center;
+    }
+
+    .hero-photo {
+      width: 210px;
+      height: 210px;
+      border-radius: 999px;
+      overflow: hidden;
+      position: relative;
+      border: 2px solid rgba(148, 163, 184, 0.7);
+      box-shadow:
+        0 0 0 4px rgba(15, 23, 42, 1),
+        0 24px 55px rgba(15, 23, 42, 0.9);
+    }
+
+    .hero-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .hero-photo-glow {
+      position: absolute;
+      inset: -15%;
+      background: radial-gradient(circle at 20% 0, rgba(59, 130, 246, 0.25), transparent 55%);
+      pointer-events: none;
+    }
+
+    /* PROFILE SNAPSHOT / RIGHT PANEL */
+    .profile-panel-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-bottom: 0.35rem;
+    }
+
+    .profile-panel-row span:first-child {
+      opacity: 0.8;
+    }
+
+    .profile-links {
+      margin-top: 0.9rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+      font-size: 0.85rem;
+    }
+
+    .profile-links a {
+      color: var(--accent);
+    }
+
+    .code-tag {
+      margin-top: 0.9rem;
+      font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+        "Liberation Mono", "Courier New", monospace;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      padding: 0.65rem 0.75rem;
+      border-radius: 0.75rem;
+      background: rgba(15, 23, 42, 0.96);
+      border: 1px solid rgba(55, 65, 81, 0.95);
+      overflow-x: auto;
+      white-space: nowrap;
+    }
+
+    .code-tag span.keyword {
+      color: #60a5fa;
+    }
+
+    .code-tag span.string {
+      color: #a5b4fc;
+    }
+
+    .code-tag span.number {
+      color: #f97316;
+    }
+
+    /* SKILLS */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 0.8rem;
+      font-size: 0.85rem;
+    }
+
+    .skill-pill {
+      background: rgba(15, 23, 42, 0.96);
+      border-radius: 999px;
+      padding: 0.45rem 0.9rem;
+      border: 1px solid var(--border-subtle);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: var(--text-muted);
+    }
+
+    .skill-pill span:last-child {
+      font-size: 0.7rem;
+      opacity: 0.7;
+    }
+
+    /* EXPERIENCE & PROJECTS */
+    .timeline {
+      display: grid;
+      gap: 0.9rem;
+      font-size: 0.87rem;
+    }
+
+    .timeline-item {
+      background: rgba(15, 23, 42, 0.97);
+      border-radius: 12px;
+      padding: 0.9rem 1rem;
+      border: 1px solid rgba(55, 65, 81, 0.95);
+    }
+
+    .timeline-title {
+      font-weight: 600;
+      margin-bottom: 0.15rem;
+    }
+
+    .timeline-meta {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-bottom: 0.35rem;
+    }
+
+    .timeline-desc {
+      font-size: 0.84rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* EDUCATION / CERTS TWO COLUMN */
+    .two-col {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+      gap: 1.4rem;
+    }
+
+    .edu-item {
+      margin-bottom: 0.9rem;
+    }
+
+    .edu-title {
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+
+    .edu-meta {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin: 0.15rem 0;
+    }
+
+    .edu-desc {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+
+    .cert-item {
+      margin-bottom: 0.9rem;
+      font-size: 0.85rem;
+    }
+
+    .cert-title {
+      font-weight: 600;
+    }
+
+    .cert-meta {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin: 0.15rem 0;
+    }
+
+    .cert-skills {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    /* HONORS */
+    .badge-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+    }
+
+    .badge {
+      font-size: 0.75rem;
+      padding: 0.3rem 0.6rem;
+      border-radius: 999px;
+      border: 1px solid rgba(75, 85, 99, 0.9);
+      background: rgba(15, 23, 42, 0.96);
+      color: var(--text-muted);
+    }
+
+    /* RECOMMENDATIONS */
+    .rec-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1rem;
+      font-size: 0.85rem;
+    }
+
+    .rec-item {
+      background: rgba(15, 23, 42, 0.97);
+      border-radius: 14px;
+      padding: 0.9rem 1rem;
+      border: 1px solid rgba(55, 65, 81, 0.95);
+    }
+
+    .rec-name {
+      font-weight: 600;
+      margin-bottom: 0.1rem;
+    }
+
+    .rec-role {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-bottom: 0.35rem;
+    }
+
+    .rec-text {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* CONTACT */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+      gap: 1.2rem;
+      font-size: 0.9rem;
+    }
+
+    .contact-list p {
+      margin: 0.35rem 0;
+      color: var(--text-muted);
+    }
+
+    .contact-list a {
+      color: var(--accent);
+    }
+
+    .contact-note {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 0.6rem;
+    }
+
+    .contact-box {
+      background: rgba(15, 23, 42, 0.97);
+      border-radius: var(--radius-card);
+      padding: 1rem 1.1rem;
+      border: 1px dashed rgba(148, 163, 184, 0.7);
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid rgba(31, 41, 55, 0.9);
+      padding: 1.3rem 1.25rem 2.2rem;
+      font-size: 0.76rem;
+      color: var(--text-muted);
+      text-align: center;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 960px) {
+      .hero-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .hero-photo-wrapper {
+        order: -1;
+      }
+    }
+
+    @media (max-width: 880px) {
+      .layout-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .two-col {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 52px;
+        right: 1rem;
+        background: rgba(15, 23, 42, 0.98);
+        padding: 0.7rem 0.95rem;
+        border-radius: 0.8rem;
+        border: 1px solid rgba(75, 85, 99, 0.9);
+        flex-direction: column;
+        gap: 0.6rem;
+      }
+
+      .nav-links.show {
+        display: flex;
+      }
+
+      .nav-toggle {
+        display: inline-flex;
+      }
+    }
+  </style>
 </head>
 <body>
-
-<header>
-    <h1>Md. Jahidul Hasan</h1>
-    <p>Principal Software Engineer · .NET · Angular · Full-Stack Developer</p>
-</header>
-
-<div class="container">
-
-    <section>
-        <h2>About Me</h2>
-        <p>
-            I am a passionate software engineer with experience in .NET, Angular, JavaScript, and scalable backend systems.
-            I enjoy building clean, maintainable solutions that solve real-world problems and improve business processes.
-        </p>
-    </section>
-
-    <section>
-        <h2>Skills</h2>
-        <div class="badge-list">
-            <span>.NET / C#</span>
-            <span>ASP.NET Core</span>
-            <span>Angular / TypeScript</span>
-            <span>JavaScript</span>
-            <span>REST APIs</span>
-            <span>MongoDB</span>
-            <span>SQL</span>
-            <span>Microservices</span>
-            <span>Message Queues / MassTransit</span>
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="nav-inner">
+      <div class="nav-brand">
+        <div class="nav-brand-name">
+          <span class="nav-dot"></span>
+          <span>Md. Jahidul Hasan Shakil</span>
         </div>
-    </section>
+        <div class="nav-brand-title">Principal Software Engineer · Orbitax Bangladesh</div>
+      </div>
+      <div class="nav-links" id="navLinks">
+        <a href="#top">Home</a>
+        <a href="#skills">Skills</a>
+        <a href="#experience">Experience</a>
+        <a href="#education">Education</a>
+        <a href="#achievements">Achievements</a>
+        <a href="#recommendations">Recommendations</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+        ☰
+      </button>
+    </div>
+  </nav>
 
+  <main class="outer" id="top">
+    <!-- HERO / SUMMARY -->
     <section>
-        <h2> Experiments</h2>
-        <ul>
-            <li><strong>High-Volume Data Processor</strong> – Processed and persisted millions of records using batching, dynamic field mapping, and MongoDB.</li>
-        </ul>
+      <div class="card">
+        <div class="hero-grid">
+          <div>
+            <div class="headline-tag">
+              <span class="headline-tag-dot"></span>
+              <span>Problem solver · Architect · Mentor</span>
+            </div>
+            <h1 class="hero-name">Md. Jahidul Hasan Shakil</h1>
+
+            <p class="hero-title-line">
+              Principal Software Engineer at Orbitax Bangladesh · Software Architecture · Microservices · .NET · Angular
+            </p>
+
+            <p class="hero-location">
+              Dhaka, Bangladesh · 7+ years at Orbitax · 500+ professional connections
+            </p>
+
+            <p class="hero-about">
+              Expert in data structures and algorithms and a long-time competitive programmer,
+              with more than <strong>3000+ problems solved</strong> across online judges and
+              a <strong>Codeforces Expert</strong> rating (~1786).
+              I enjoy designing and building clean, scalable systems using microservices and modern
+              web technologies, and mentoring teams to deliver reliable software.
+            </p>
+
+            <div class="hero-chips">
+              <span class="chip">Software Architecture</span>
+              <span class="chip">Microservices</span>
+              <span class="chip">.NET Core</span>
+              <span class="chip">Angular</span>
+              <span class="chip">Data Structures & Algorithms</span>
+              <span class="chip">MongoDB · Redis · RabbitMQ</span>
+            </div>
+
+            <div class="hero-actions">
+              <a href="#contact" class="btn btn-primary">Contact Me</a>
+              <a href="https://github.com/md-jahidulhasan" class="btn btn-outline" target="_blank">
+                View GitHub →
+              </a>
+              <a href="https://www.linkedin.com/in/md-jahidulhasan" class="btn btn-outline" target="_blank">
+                View LinkedIn →
+              </a>
+              <a href="https://leetcode.com/jahidul_hasan" class="btn btn-outline" target="_blank">
+                LeetCode Profile →
+              </a>
+            </div>
+          </div>
+
+          <div class="hero-photo-wrapper">
+            <div class="hero-photo">
+              <div class="hero-photo-glow"></div>
+              <img
+                src="https://media.licdn.com/dms/image/v2/C5103AQGUWNs-u0DbIQ/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1572718135452?e=1764806400&v=beta&t=fxKXs4f4zRoOWqh7rxRbtTLyhO3hgwvgTuKh6N0k930"
+                alt="Portrait of Md. Jahidul Hasan Shakil" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SNAPSHOT PANEL -->
+      <div class="layout-grid" style="margin-top:1.7rem;">
+        <aside class="card-soft">
+          <h3 style="margin-top:0;margin-bottom:0.6rem;font-size:1rem;">Profile Snapshot</h3>
+          <div class="profile-panel-row">
+            <span>Current role</span>
+            <span>Principal Software Engineer</span>
+          </div>
+          <div class="profile-panel-row">
+            <span>Company</span>
+            <span>Orbitax Bangladesh</span>
+          </div>
+          <div class="profile-panel-row">
+            <span>Experience</span>
+            <span>7+ years (Orbitax)</span>
+          </div>
+          <div class="profile-panel-row">
+            <span>Focus</span>
+            <span>Architecture · Microservices</span>
+          </div>
+          <div class="profile-panel-row">
+            <span>Primary stack</span>
+            <span>.NET Core · Angular</span>
+          </div>
+          <div class="profile-panel-row">
+            <span>Competitive</span>
+            <span>Codeforces Expert (~1786)</span>
+          </div>
+
+          <div class="profile-links">
+            <strong>Links</strong>
+            <a href="https://www.linkedin.com/in/md-jahidulhasan" target="_blank">
+              LinkedIn
+            </a>
+            <a href="https://github.com/md-jahidulhasan" target="_blank">
+              GitHub
+            </a>
+            <a href="https://jahidulhasan.com" target="_blank">
+              jahidulhasan.com
+            </a>
+          </div>
+
+          <div class="code-tag">
+            <span class="keyword">const</span> jahidul =
+            { role: <span class="string">"Principal Software Engineer"</span>,
+              rating: <span class="number">1786</span>, focus:
+              [<span class="string">"Microservices"</span>, <span class="string">"Architecture"</span>,
+              <span class="string">"DSA"</span>] };
+          </div>
+        </aside>
+
+        <!-- Quick Achievements -->
+        <div class="card-soft">
+          <h3 style="margin-top:0;margin-bottom:0.6rem;font-size:1rem;">Highlights</h3>
+          <ul style="margin:0;padding-left:1.1rem;font-size:0.86rem;color:var(--text-muted);line-height:1.6;">
+            <li>Principal Software Engineer with strong ownership, technical leadership, and mentoring experience.</li>
+            <li>Deep experience in <strong>microservices</strong>, <strong>event-driven architecture</strong>, and scalable backend systems.</li>
+            <li>Long-time competitive programmer with multiple ICPC & university contest achievements.</li>
+            <li>Passionate about clean architecture, performance, developer experience, and problem solving.</li>
+          </ul>
+        </div>
+      </div>
     </section>
 
-    <section>
-        <h2>Contact</h2>
-        <p>GitHub: <a href="https://github.com/md-jahidulhasan" target="_blank">github.com/md-jahidulhasan</a></p>
-        <p>Website: <a href="https://jahidulhasan.com" target="_blank">jahidulhasan.com</a></p>
+    <!-- SKILLS -->
+    <section id="skills">
+      <h2 class="section-title">Skills</h2>
+      <p class="section-subtitle">Industry knowledge, tools, and technologies I work with regularly.</p>
+      <div class="card">
+        <div class="skills-grid">
+          <!-- Industry / Architecture -->
+          <div class="skill-pill">
+            <span>Software Development</span><span>Industry</span>
+          </div>
+          <div class="skill-pill">
+            <span>Software Architecture</span><span>Design</span>
+          </div>
+          <div class="skill-pill">
+            <span>Microservices</span><span>Distributed</span>
+          </div>
+
+          <!-- Languages -->
+          <div class="skill-pill">
+            <span>C</span><span>Language</span>
+          </div>
+          <div class="skill-pill">
+            <span>C++</span><span>Language</span>
+          </div>
+          <div class="skill-pill">
+            <span>Java</span><span>Language</span>
+          </div>
+          <div class="skill-pill">
+            <span>SQL</span><span>Data</span>
+          </div>
+          <div class="skill-pill">
+            <span>HTML</span><span>Web</span>
+          </div>
+          <div class="skill-pill">
+            <span>Matlab</span><span>Numerical</span>
+          </div>
+
+          <!-- CS Fundamentals -->
+          <div class="skill-pill">
+            <span>Data Structures</span><span>CS Core</span>
+          </div>
+          <div class="skill-pill">
+            <span>Algorithms</span><span>CS Core</span>
+          </div>
+
+          <!-- Tools & Tech -->
+          <div class="skill-pill">
+            <span>Linux</span><span>Environment</span>
+          </div>
+          <div class="skill-pill">
+            <span>GitHub</span><span>Collaboration</span>
+          </div>
+          <div class="skill-pill">
+            <span>Redis</span><span>Caching</span>
+          </div>
+          <div class="skill-pill">
+            <span>MongoDB</span><span>NoSQL</span>
+          </div>
+          <div class="skill-pill">
+            <span>RabbitMQ</span><span>Messaging</span>
+          </div>
+          <div class="skill-pill">
+            <span>Angular</span><span>Frontend</span>
+          </div>
+          <div class="skill-pill">
+            <span>.NET Core</span><span>Backend</span>
+          </div>
+          <div class="skill-pill">
+            <span>GraphQL</span><span>API</span>
+          </div>
+        </div>
+      </div>
     </section>
 
-</div>
+    <!-- EXPERIENCE & PROJECTS -->
+    <section id="experience">
+      <h2 class="section-title">Experience & Selected Projects</h2>
+      <p class="section-subtitle">
+        Professional roles and a few notable projects. (Details can be expanded as needed.)
+      </p>
+      <div class="card">
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-title">Principal Software Engineer</div>
+            <div class="timeline-meta">
+              Orbitax Bangladesh · Full-time · Jul 2025 – Present · Dhaka, Bangladesh (On-site)
+            </div>
+            <p class="timeline-desc">
+              Leading architecture and technical direction for core products, with strong focus on
+              microservices, scalable APIs, and high-quality engineering practices. Guiding teams,
+              mentoring engineers, and ensuring delivery of robust, maintainable systems.
+            </p>
+          </div>
 
-<div class="footer">
-    © 2025 Md. Jahidul Hasan — All Rights Reserved.
-</div>
+          <div class="timeline-item">
+            <div class="timeline-title">Senior Software Engineer</div>
+            <div class="timeline-meta">
+              Orbitax Bangladesh · Jul 2022 – Jun 2025 · Dhaka, Bangladesh
+            </div>
+            <p class="timeline-desc">
+              Worked on microservices and software architecture, designing and implementing services that
+              support tax technology solutions. Balanced hands-on coding with team guidance, reviews, and
+              performance improvements.
+            </p>
+          </div>
 
+          <div class="timeline-item">
+            <div class="timeline-title">Software Engineer</div>
+            <div class="timeline-meta">
+              Orbitax Bangladesh · May 2019 – Jun 2022 · Dhaka, Bangladesh
+            </div>
+            <p class="timeline-desc">
+              Built and maintained backend services and web applications, contributing to core features
+              and integrations. Focused on clean code, reliability, and long-term maintainability while
+              evolving towards microservices and better architecture.
+            </p>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-title">DX Ball (C++ Course Project)</div>
+            <div class="timeline-meta">
+              Comilla University · Jan 2012 – Present
+            </div>
+            <p class="timeline-desc">
+              A graphics-based game developed as part of a C++ course project. Team-based project where I
+              contributed to game logic and rendering, exploring low-level programming concepts and
+              graphics programming fundamentals.
+            </p>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-title">Distance Measurement through Speech Recognition</div>
+            <div class="timeline-meta">
+              Comilla University · Oct 2016 – Nov 2016
+            </div>
+            <p class="timeline-desc">
+              Academic project exploring speech recognition techniques to estimate distance, combining
+              signal processing, algorithmic thinking, and practical experimentation.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EDUCATION & CERTIFICATIONS -->
+    <section id="education">
+      <h2 class="section-title">Education & Certifications</h2>
+      <p class="section-subtitle">
+        Formal education and structured learning programs that shaped my engineering mindset.
+      </p>
+      <div class="card two-col">
+        <!-- Education -->
+        <div>
+          <h3 style="margin-top:0;margin-bottom:0.8rem;font-size:0.98rem;">Education</h3>
+
+          <div class="edu-item">
+            <div class="edu-title">MSc. Engineering, Information & Communication Technology</div>
+            <div class="edu-meta">Comilla University · 2017 – 2018 · Grade: 3.71</div>
+          </div>
+
+          <div class="edu-item">
+            <div class="edu-title">B.Eng., Information & Communication Technology</div>
+            <div class="edu-meta">Comilla University · 2011 – 2017 · Grade: 3.73</div>
+            <p class="edu-desc">
+              Programming contestant, problem setter and judge, and President of ICT Association.
+              Active in programming contests, ICT Association activities, and Comilla University
+              Programming Contest Group.
+            </p>
+          </div>
+        </div>
+
+        <!-- Certifications -->
+        <div>
+          <h3 style="margin-top:0;margin-bottom:0.8rem;font-size:0.98rem;">Licenses & Certifications</h3>
+
+          <div class="cert-item">
+            <div class="cert-title">The Complete Microservices & Event-Driven Architecture</div>
+            <div class="cert-meta">Udemy · Issued Dec 2024 · Credential ID: UC-b10f3ba0-ea05-4f05-a062-d5d74b7a015b</div>
+            <div class="cert-skills">Skills: Software Architecture · Software Development · Microservices</div>
+          </div>
+
+          <div class="cert-item">
+            <div class="cert-title">Microservices Architecture - The Complete Guide</div>
+            <div class="cert-meta">Udemy · Issued Jun 2024 · Credential ID: UC-cc1a3b9d-8465-489e-89bf-df11c0d4d3dc</div>
+            <div class="cert-skills">Skills: Microservices · Software Architecture</div>
+          </div>
+
+          <div class="cert-item">
+            <div class="cert-title">Redis Essential Training</div>
+            <div class="cert-meta">LinkedIn Learning · Issued Jun 2024</div>
+            <div class="cert-skills">Skills: Redis</div>
+          </div>
+
+          <div class="cert-item">
+            <div class="cert-title">C++ For C Programmers, Part A</div>
+            <div class="cert-meta">Coursera (University of California, Santa Cruz) · Issued Jan 2018 · Credential ID: UQTSY4MQYSYJ</div>
+            <div class="cert-skills">Skills: C++ · Problem Solving</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ACHIEVEMENTS -->
+    <section id="achievements">
+      <h2 class="section-title">Competitive Programming & Honors</h2>
+      <p class="section-subtitle">
+        Competitive programming achievements and recognitions that shaped my problem-solving mindset.
+      </p>
+      <div class="card">
+        <div style="margin-bottom:1rem;font-size:0.87rem;color:var(--text-muted);">
+          <strong>Competitive Programming</strong><br />
+          Codeforces Expert (~1786 rating) with 3000+ problems solved across various online judges.
+        </div>
+        <div class="badge-list">
+          <span class="badge">21st · SUST Inter University Programming Contest 2017</span>
+          <span class="badge">2nd Runners up · CUET Programming Contest 2017</span>
+          <span class="badge">30th · 2016 ACM-ICPC Asia Dhaka Regional</span>
+          <span class="badge">1st Runners up · USTC TechTronics'16 IUPC 2016</span>
+          <span class="badge">2nd Runners up · CUET IUPC 2015</span>
+          <span class="badge">48th · 2015 ACM-ICPC Asia Dhaka Regional</span>
+          <span class="badge">45th · 2014 ACM-ICPC Asia Dhaka Regional</span>
+          <span class="badge">12th · Bangladesh Submarine Cable Co. Programming Contest</span>
+          <span class="badge">National Collegiate Programming Contest Bangladesh 2013–2016</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- RECOMMENDATIONS -->
+    <section id="recommendations">
+      <h2 class="section-title">Recommendations</h2>
+      <p class="section-subtitle">
+        Feedback from people who have worked directly with me.
+      </p>
+      <div class="card">
+        <div class="rec-grid">
+          <div class="rec-item">
+            <div class="rec-name">Khairul Anam Mubin</div>
+            <div class="rec-role">Software Engineer · Former direct report · Dec 2024</div>
+            <p class="rec-text">
+              “He is not only a highly skilled software engineer but also a natural leader.
+              His technical expertise is exceptional, both in backend and frontend development.
+              He manages the team with a strong sense of ownership and responsibility and
+              fosters a collaborative environment where everyone feels valued.”
+            </p>
+          </div>
+
+          <div class="rec-item">
+            <div class="rec-name">Aliful Rubel</div>
+            <div class="rec-role">Senior Product Development Manager · Former manager · Apr 2024</div>
+            <p class="rec-text">
+              “Shakil is a paragon among software engineers, an outstanding coder with a
+              talent for leading teams to success. He consistently delivers high-quality,
+              well-structured code and excels at explaining complex concepts clearly, taking
+              exceptional ownership to get the job done.”
+            </p>
+          </div>
+
+          <div class="rec-item">
+            <div class="rec-name">Sabera Jamila Zinia</div>
+            <div class="rec-role">Software Developer · Former teammate · Feb 2021</div>
+            <p class="rec-text">
+              “He has a good grasp on both frontend and backend technologies. He is very
+              organized, disciplined, and devoted to his work, hardly missing any deadline.
+              He has good leadership skills and is very good at problem solving.”
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+      <h2 class="section-title">Contact</h2>
+      <p class="section-subtitle">
+        Reach out if you’d like to do a collaboration, or discuss technical problem.
+      </p>
+      <div class="card contact-grid">
+        <div class="contact-list">
+          <p>
+            <strong>Website</strong><br />
+            <a href="https://jahidulhasan.com" target="_blank">jahidulhasan.com</a>
+          </p>
+          <p>
+            <strong>LinkedIn</strong><br />
+            <a href="https://www.linkedin.com/in/md-jahidulhasan" target="_blank">
+              linkedin.com/in/md-jahidulhasan
+            </a>
+          </p>
+          <p>
+            <strong>GitHub</strong><br />
+            <a href="https://github.com/md-jahidulhasan" target="_blank">
+              github.com/md-jahidulhasan
+            </a>
+          </p>
+        </div>
+        
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    © <span id="year"></span> Md. Jahidul Hasan Shakil — Built with ❤️, code, and GitHub Pages.
+  </footer>
+
+  <script>
+    // mobile nav toggle
+    const navToggle = document.getElementById("navToggle");
+    const navLinks = document.getElementById("navLinks");
+    if (navToggle && navLinks) {
+      navToggle.addEventListener("click", () => {
+        navLinks.classList.toggle("show");
+      });
+    }
+    // dynamic year
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
