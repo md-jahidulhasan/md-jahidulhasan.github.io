@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Play DxBall - Md. Jahidul Hasan Shakil</title>
+  <style>
+    :root {
+      --bg: #020617;
+      --panel: #020617;
+      --accent: #3b82f6;
+      --accent-soft: rgba(59, 130, 246, 0.12);
+      --text: #e5e7eb;
+      --text-muted: #9ca3af;
+      --border-subtle: rgba(148, 163, 184, 0.28);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+      background:
+        radial-gradient(circle at top, #0b1120 0, #020617 45%, #000 100%);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(18px);
+      background: linear-gradient(
+        to bottom,
+        rgba(15, 23, 42, 0.97),
+        rgba(15, 23, 42, 0.86)
+      );
+      border-bottom: 1px solid rgba(31, 41, 55, 0.9);
+    }
+
+    .nav-inner {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0.6rem 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+
+    .nav-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 999px;
+      background: var(--accent);
+      box-shadow: 0 0 18px rgba(59, 130, 246, 0.9);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1rem;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .nav-links a:hover {
+      color: var(--accent);
+    }
+
+    .outer {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 1.5rem 1.25rem 2rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+
+    .card {
+      background:
+        radial-gradient(circle at top left, #020617, #000 55%);
+      border-radius: 18px;
+      border: 1px solid var(--border-subtle);
+      box-shadow: 0 24px 60px rgba(15, 23, 42, 0.95);
+      padding: 1.5rem 1.4rem;
+    }
+
+    .header-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .title {
+      font-size: 1.25rem;
+      margin: 0;
+    }
+
+    .subtitle {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin: 0.3rem 0 0.6rem;
+    }
+
+    .back-link {
+      font-size: 0.8rem;
+      color: var(--accent);
+      border: 1px solid var(--border-subtle);
+      padding: 0.35rem 0.8rem;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      background: rgba(15, 23, 42, 0.95);
+    }
+
+    .back-link:hover {
+      border-color: var(--accent);
+    }
+
+    .game-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    canvas {
+      background: radial-gradient(circle at top, #020617 0, #020617 40%, #000 100%);
+      border-radius: 16px;
+      border: 1px solid rgba(148, 163, 184, 0.3);
+      box-shadow: 0 22px 50px rgba(15, 23, 42, 0.9);
+    }
+
+    .hud {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .hud span strong {
+      color: var(--accent);
+    }
+
+    .hint {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-top: 0.4rem;
+    }
+
+    .controls {
+      width: 100%;
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 0.3rem;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      gap: 0.4rem;
+      align-items: center;
+    }
+
+    .controls select {
+      background: rgba(15, 23, 42, 0.95);
+      border-radius: 999px;
+      border: 1px solid var(--border-subtle);
+      color: var(--text);
+      padding: 0.18rem 0.6rem;
+      font-size: 0.78rem;
+      outline: none;
+    }
+
+    footer {
+      border-top: 1px solid rgba(31, 41, 55, 0.9);
+      padding: 1rem 1.25rem 1.8rem;
+      font-size: 0.76rem;
+      color: var(--text-muted);
+      text-align: center;
+    }
+
+    @media (max-width: 640px) {
+      .nav-links {
+        display: none;
+      }
+
+      canvas {
+        width: 100% !important;
+        height: auto !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="nav-inner">
+      <div class="nav-brand">
+        <span class="nav-dot"></span>
+        <span>Md. Jahidul Hasan Shakil</span>
+      </div>
+      <div class="nav-links">
+        <a href="index.html#top">Home</a>
+        <a href="index.html#experience">Experience</a>
+        <a href="index.html#contact">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="outer">
+    <div class="card">
+      <div class="header-row">
+        <div>
+          <h1 class="title">DxBall</h1>
+          <p class="subtitle">
+            A simple browser version of the classic DxBall game. Move the paddle to keep the ball in play and clear all bricks.
+          </p>
+        </div>
+        <a class="back-link" href="index.html#experience">
+          ← Back to Portfolio
+        </a>
+      </div>
+
+      <div class="game-wrapper">
+        <canvas id="dxball" width="640" height="420"></canvas>
+        <div class="hud">
+          <span>Score: <strong id="score">0</strong></span>
+          <span>Lives: <strong id="lives">3</strong></span>
+          <span>Level: <strong id="level">1</strong></span>
+        </div>
+        <div class="hint">
+          Use <strong>←</strong> and <strong>→</strong> arrow keys (or move your mouse) to control the paddle. Press <strong>Space</strong> to pause/resume.
+        </div>
+        <div class="controls">
+          <span>Ball spread:</span>
+          <select id="spreadControl">
+            <option value="0.6">Narrow</option>
+            <option value="1" selected>Normal</option>
+            <option value="1.4">Wide</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    © <span id="year"></span> Md. Jahidul Hasan Shakil — DxBall demo.
+  </footer>
+
+  <script>
+    // simple Web Audio-based sounds
+    let audioCtx;
+    function getAudioCtx() {
+      if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      }
+      return audioCtx;
+    }
+
+    function playBeep(type) {
+      const ctxAudio = getAudioCtx();
+      const osc = ctxAudio.createOscillator();
+      const gain = ctxAudio.createGain();
+
+      let freq = 440;
+      let duration = 0.08;
+
+      if (type === "brick") {
+        freq = 620;
+        duration = 0.06;
+      } else if (type === "paddle") {
+        freq = 760;
+        duration = 0.07;
+      } else if (type === "lifeLost") {
+        freq = 260;
+        duration = 0.25;
+      } else if (type === "gameOver") {
+        freq = 200;
+        duration = 0.4;
+      } else if (type === "levelUp") {
+        freq = 900;
+        duration = 0.18;
+      }
+
+      osc.type = "square";
+      osc.frequency.setValueAtTime(freq, ctxAudio.currentTime);
+
+      gain.gain.setValueAtTime(0.16, ctxAudio.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, ctxAudio.currentTime + duration);
+
+      osc.connect(gain);
+      gain.connect(ctxAudio.destination);
+
+      osc.start();
+      osc.stop(ctxAudio.currentTime + duration);
+    }
+
+    const canvas = document.getElementById("dxball");
+    const ctx = canvas.getContext("2d");
+
+    const scoreEl = document.getElementById("score");
+    const livesEl = document.getElementById("lives");
+    const levelEl = document.getElementById("level");
+
+    let score = 0;
+    let lives = 3;
+    let level = 1;
+
+    const ballRadius = 8;
+    let x = canvas.width / 2;
+    let y = canvas.height - 40;
+    let dx = 3;
+    let dy = -3;
+
+    const paddleHeight = 12;
+    const paddleWidth = 96;
+    let paddleX = (canvas.width - paddleWidth) / 2;
+
+    let rightPressed = false;
+    let leftPressed = false;
+
+    const brickRowCount = 5;
+    const brickColumnCount = 10;
+    const brickWidth = 52;
+    const brickHeight = 16;
+    const brickPadding = 10;
+    const brickOffsetTop = 40;
+    const brickOffsetLeft = 32;
+
+    let bricks = [];
+
+    let paused = false;
+    let gameOver = false;
+
+    let spreadFactor = 1;
+
+    function initBricks() {
+      bricks = [];
+      for (let c = 0; c < brickColumnCount; c++) {
+        bricks[c] = [];
+        for (let r = 0; r < brickRowCount; r++) {
+          bricks[c][r] = { x: 0, y: 0, status: 1 };
+        }
+      }
+    }
+
+    function resetBallAndPaddle() {
+      x = canvas.width / 2;
+      y = canvas.height - 40;
+      dx = 3 * (Math.random() > 0.5 ? 1 : -1);
+      dy = -3;
+      paddleX = (canvas.width - paddleWidth) / 2;
+    }
+
+    function drawBall() {
+      const gradient = ctx.createRadialGradient(x - 3, y - 3, 2, x, y, ballRadius);
+      gradient.addColorStop(0, "#ffffff");
+      gradient.addColorStop(1, "#38bdf8");
+      ctx.beginPath();
+      ctx.arc(x, y, ballRadius, 0, Math.PI * 2);
+      ctx.fillStyle = gradient;
+      ctx.fill();
+      ctx.closePath();
+    }
+
+    function drawPaddle() {
+      const grd = ctx.createLinearGradient(paddleX, canvas.height - paddleHeight - 10, paddleX + paddleWidth, canvas.height);
+      grd.addColorStop(0, "#3b82f6");
+      grd.addColorStop(1, "#8b5cf6");
+      ctx.beginPath();
+      ctx.roundRect(paddleX, canvas.height - paddleHeight - 10, paddleWidth, paddleHeight, 6);
+      ctx.fillStyle = grd;
+      ctx.fill();
+      ctx.closePath();
+    }
+
+    function drawBricks() {
+      for (let c = 0; c < brickColumnCount; c++) {
+        for (let r = 0; r < brickRowCount; r++) {
+          if (bricks[c][r].status === 1) {
+            const brickX = c * (brickWidth + brickPadding) + brickOffsetLeft;
+            const brickY = r * (brickHeight + brickPadding) + brickOffsetTop;
+            bricks[c][r].x = brickX;
+            bricks[c][r].y = brickY;
+            const grd = ctx.createLinearGradient(brickX, brickY, brickX, brickY + brickHeight);
+            grd.addColorStop(0, "rgba(59,130,246,0.95)");
+            grd.addColorStop(1, "rgba(37,99,235,0.75)");
+            ctx.beginPath();
+            ctx.roundRect(brickX, brickY, brickWidth, brickHeight, 4);
+            ctx.fillStyle = grd;
+            ctx.fill();
+            ctx.closePath();
+          }
+        }
+      }
+    }
+
+    function collisionDetection() {
+      for (let c = 0; c < brickColumnCount; c++) {
+        for (let r = 0; r < brickRowCount; r++) {
+          const b = bricks[c][r];
+          if (b.status === 1) {
+            if (
+              x > b.x &&
+              x < b.x + brickWidth &&
+              y > b.y &&
+              y < b.y + brickHeight
+            ) {
+              dy = -dy;
+              b.status = 0;
+              score += 10;
+              scoreEl.textContent = score;
+              playBeep("brick");
+
+              const totalBricks = brickRowCount * brickColumnCount;
+              const broken = bricks.flat().filter(brick => brick.status === 0).length;
+              if (broken === totalBricks) {
+                level++;
+                levelEl.textContent = level;
+                initBricks();
+                resetBallAndPaddle();
+                dx *= 1.2;
+                dy *= 1.2;
+                playBeep("levelUp");
+              }
+            }
+          }
+        }
+      }
+    }
+
+    function drawBackground() {
+      const grd = ctx.createLinearGradient(0, 0, 0, canvas.height);
+      grd.addColorStop(0, "rgba(15,23,42,1)");
+      grd.addColorStop(1, "rgba(15,23,42,0.4)");
+      ctx.fillStyle = grd;
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      ctx.strokeStyle = "rgba(148,163,184,0.3)";
+      ctx.strokeRect(0.5, 0.5, canvas.width - 1, canvas.height - 1);
+    }
+
+    function drawOverlayText(text, subtext) {
+      ctx.fillStyle = "rgba(15,23,42,0.8)";
+      ctx.fillRect(0, canvas.height / 2 - 40, canvas.width, 80);
+
+      ctx.fillStyle = "#e5e7eb";
+      ctx.font = "20px system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif";
+      ctx.textAlign = "center";
+      ctx.fillText(text, canvas.width / 2, canvas.height / 2 - 4);
+
+      if (subtext) {
+        ctx.fillStyle = "#9ca3af";
+        ctx.font = "14px system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif";
+        ctx.fillText(subtext, canvas.width / 2, canvas.height / 2 + 18);
+      }
+    }
+
+    function draw() {
+      drawBackground();
+      drawBricks();
+      drawBall();
+      drawPaddle();
+      collisionDetection();
+
+      if (paused) {
+        drawOverlayText("Paused", "Press Space to resume");
+        requestAnimationFrame(draw);
+        return;
+      }
+
+      if (gameOver) {
+        drawOverlayText("Game Over", "Press Enter to restart");
+        return;
+      }
+
+      if (x + dx > canvas.width - ballRadius || x + dx < ballRadius) {
+        dx = -dx;
+      }
+
+      if (y + dy < ballRadius) {
+        dy = -dy;
+      } else if (y + dy > canvas.height - ballRadius - 10) {
+        if (
+          x > paddleX &&
+          x < paddleX + paddleWidth
+        ) {
+          const relativeHit = (x - (paddleX + paddleWidth / 2)) / (paddleWidth / 2);
+          dx = 4 * spreadFactor * relativeHit;
+          dy = -Math.abs(dy) * 1.02;
+          playBeep("paddle");
+        } else if (y + dy > canvas.height - ballRadius) {
+          lives--;
+          livesEl.textContent = lives;
+          if (!lives) {
+            gameOver = true;
+            playBeep("gameOver");
+          } else {
+            resetBallAndPaddle();
+            playBeep("lifeLost");
+          }
+        }
+      }
+
+      if (rightPressed) {
+        paddleX += 7;
+        if (paddleX + paddleWidth > canvas.width) {
+          paddleX = canvas.width - paddleWidth;
+        }
+      } else if (leftPressed) {
+        paddleX -= 7;
+        if (paddleX < 0) {
+          paddleX = 0;
+        }
+      }
+
+      x += dx;
+      y += dy;
+
+      requestAnimationFrame(draw);
+    }
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Right" || e.key === "ArrowRight") {
+        rightPressed = true;
+      } else if (e.key === "Left" || e.key === "ArrowLeft") {
+        leftPressed = true;
+      } else if (e.code === "Space") {
+        e.preventDefault();
+        paused = !paused;
+      } else if (e.key === "Enter" && gameOver) {
+        score = 0;
+        lives = 3;
+        level = 1;
+        scoreEl.textContent = score;
+        livesEl.textContent = lives;
+        levelEl.textContent = level;
+        initBricks();
+        resetBallAndPaddle();
+        gameOver = false;
+        paused = false;
+        draw();
+      }
+    });
+
+    document.addEventListener("keyup", (e) => {
+      if (e.key === "Right" || e.key === "ArrowRight") {
+        rightPressed = false;
+      } else if (e.key === "Left" || e.key === "ArrowLeft") {
+        leftPressed = false;
+      }
+    });
+
+    canvas.addEventListener("mousemove", (e) => {
+      const rect = canvas.getBoundingClientRect();
+      const relativeX = e.clientX - rect.left;
+      if (relativeX > 0 && relativeX < canvas.width) {
+        paddleX = relativeX - paddleWidth / 2;
+        if (paddleX < 0) paddleX = 0;
+        if (paddleX + paddleWidth > canvas.width) {
+          paddleX = canvas.width - paddleWidth;
+        }
+      }
+    });
+
+    const spreadControl = document.getElementById("spreadControl");
+    if (spreadControl) {
+      spreadControl.addEventListener("change", (e) => {
+        const value = parseFloat(e.target.value);
+        if (!Number.isNaN(value) && value > 0) {
+          spreadFactor = value;
+        }
+      });
+    }
+
+    if (typeof ctx.roundRect !== "function") {
+      CanvasRenderingContext2D.prototype.roundRect = function (x, y, w, h, r) {
+        if (w < 2 * r) r = w / 2;
+        if (h < 2 * r) r = h / 2;
+        this.beginPath();
+        this.moveTo(x + r, y);
+        this.arcTo(x + w, y, x + w, y + h, r);
+        this.arcTo(x + w, y + h, x, y + h, r);
+        this.arcTo(x, y + h, x, y, r);
+        this.arcTo(x, y, x + w, y, r);
+        this.closePath();
+        return this;
+      };
+    }
+
+    initBricks();
+    resetBallAndPaddle();
+    draw();
+
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
+

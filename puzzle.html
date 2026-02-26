@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Puzzle - Md. Jahidul Hasan Shakil</title>
+  <style>
+    :root {
+      --bg: #020617;
+      --accent: #3b82f6;
+      --text: #e5e7eb;
+      --text-muted: #9ca3af;
+      --border-subtle: rgba(148, 163, 184, 0.28);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+      background:
+        radial-gradient(circle at top, #0b1120 0, #020617 45%, #000 100%);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(18px);
+      background: linear-gradient(
+        to bottom,
+        rgba(15, 23, 42, 0.97),
+        rgba(15, 23, 42, 0.86)
+      );
+      border-bottom: 1px solid rgba(31, 41, 55, 0.9);
+    }
+
+    .nav-inner {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0.6rem 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+
+    .nav-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 999px;
+      background: var(--accent);
+      box-shadow: 0 0 18px rgba(59, 130, 246, 0.9);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1rem;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .nav-links a:hover {
+      color: var(--accent);
+    }
+
+    .outer {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 1.5rem 1.25rem 2rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+
+    .card {
+      background:
+        radial-gradient(circle at top left, #020617, #000 55%);
+      border-radius: 18px;
+      border: 1px solid var(--border-subtle);
+      box-shadow: 0 24px 60px rgba(15, 23, 42, 0.95);
+      padding: 1.5rem 1.4rem 1.7rem;
+    }
+
+    .header-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 0.9rem;
+    }
+
+    .title {
+      font-size: 1.25rem;
+      margin: 0;
+    }
+
+    .subtitle {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin: 0.3rem 0 0.6rem;
+    }
+
+    .back-link {
+      font-size: 0.8rem;
+      color: var(--accent);
+      border: 1px solid var(--border-subtle);
+      padding: 0.35rem 0.8rem;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      background: rgba(15, 23, 42, 0.95);
+    }
+
+    .back-link:hover {
+      border-color: var(--accent);
+    }
+
+    .puzzle-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.9rem;
+    }
+
+    canvas {
+      border-radius: 18px;
+      border: 1px solid rgba(148, 163, 184, 0.3);
+      box-shadow: 0 22px 50px rgba(15, 23, 42, 0.9);
+      background: radial-gradient(circle at top, #020617 0, #020617 40%, #000 100%);
+      cursor: pointer;
+    }
+
+    .info {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .controls {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      font-size: 0.8rem;
+      padding: 0.32rem 0.9rem;
+      border-radius: 999px;
+      border: 1px solid var(--border-subtle);
+      background: rgba(15, 23, 42, 0.95);
+      color: var(--text);
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      border-color: var(--accent);
+      background: linear-gradient(135deg, #2563eb, #4f46e5);
+    }
+
+    .status {
+      min-height: 1.2em;
+    }
+
+    footer {
+      border-top: 1px solid rgba(31, 41, 55, 0.9);
+      padding: 1rem 1.25rem 1.8rem;
+      font-size: 0.76rem;
+      color: var(--text-muted);
+      text-align: center;
+    }
+
+    @media (max-width: 640px) {
+      .nav-links {
+        display: none;
+      }
+
+      canvas {
+        width: 100% !important;
+        height: auto !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="nav-inner">
+      <div class="nav-brand">
+        <span class="nav-dot"></span>
+        <span>Md. Jahidul Hasan Shakil</span>
+      </div>
+      <div class="nav-links">
+        <a href="index.html#top">Home</a>
+        <a href="play.html">Play</a>
+        <a href="puzzle.html">Puzzle</a>
+        <a href="index.html#contact">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="outer">
+    <div class="card">
+      <div class="header-row">
+        <div>
+          <h1 class="title">Lights Out Puzzle</h1>
+          <p class="subtitle">
+            A classic 5×5 Lights Out puzzle. Click a tile to toggle it and its neighbors — turn all tiles dark to solve it.
+          </p>
+        </div>
+        <a class="back-link" href="index.html#experience">
+          ← Back to Portfolio
+        </a>
+      </div>
+
+      <div class="puzzle-wrapper">
+        <canvas id="puzzle" width="460" height="460"></canvas>
+        <div class="info">
+          <div class="status" id="statusText"></div>
+          <div class="controls">
+            <button class="btn btn-primary" id="shuffleBtn">New puzzle</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    © <span id="year"></span> Md. Jahidul Hasan Shakil — Puzzle demo.
+  </footer>
+
+  <script>
+    const canvas = document.getElementById("puzzle");
+    const ctx = canvas.getContext("2d");
+    const statusText = document.getElementById("statusText");
+    const shuffleBtn = document.getElementById("shuffleBtn");
+
+    const gridSize = 5;
+    const tileSize = canvas.width / gridSize;
+
+    let grid = [];
+    let moves = 0;
+    let solved = false;
+
+    function initGrid() {
+      grid = [];
+      for (let r = 0; r < gridSize; r++) {
+        const row = [];
+        for (let c = 0; c < gridSize; c++) {
+          row.push(false);
+        }
+        grid.push(row);
+      }
+      moves = 0;
+      solved = false;
+      statusText.textContent = "Click New puzzle to generate a board.";
+    }
+
+    function randomizeGrid() {
+      initGrid();
+      for (let i = 0; i < gridSize * gridSize * 3; i++) {
+        const r = Math.floor(Math.random() * gridSize);
+        const c = Math.floor(Math.random() * gridSize);
+        toggleAt(r, c);
+      }
+      moves = 0;
+      solved = isSolved();
+      updateStatus();
+      drawGrid();
+    }
+
+    function toggleAt(row, col) {
+      const dirs = [
+        [0, 0],
+        [-1, 0],
+        [1, 0],
+        [0, -1],
+        [0, 1]
+      ];
+      for (const [dr, dc] of dirs) {
+        const nr = row + dr;
+        const nc = col + dc;
+        if (nr >= 0 && nr < gridSize && nc >= 0 && nc < gridSize) {
+          grid[nr][nc] = !grid[nr][nc];
+        }
+      }
+    }
+
+    function isSolved() {
+      for (let r = 0; r < gridSize; r++) {
+        for (let c = 0; c < gridSize; c++) {
+          if (grid[r][c]) return false;
+        }
+      }
+      return true;
+    }
+
+    function updateStatus() {
+      if (solved) {
+        statusText.innerHTML = `<strong>Solved in ${moves} moves!</strong>`;
+      } else {
+        statusText.textContent = `Moves: ${moves} — make all tiles dark.`;
+      }
+    }
+
+    function drawGrid() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      for (let r = 0; r < gridSize; r++) {
+        for (let c = 0; c < gridSize; c++) {
+          const x = c * tileSize;
+          const y = r * tileSize;
+
+          const on = grid[r][c];
+
+          const grad = ctx.createLinearGradient(x, y, x + tileSize, y + tileSize);
+          if (on) {
+            grad.addColorStop(0, "rgba(59,130,246,0.95)");
+            grad.addColorStop(1, "rgba(56,189,248,0.85)");
+          } else {
+            grad.addColorStop(0, "#020617");
+            grad.addColorStop(1, "#020617");
+          }
+
+          ctx.fillStyle = grad;
+          ctx.fillRect(x + 4, y + 4, tileSize - 8, tileSize - 8);
+
+          ctx.strokeStyle = "rgba(15,23,42,0.8)";
+          ctx.lineWidth = 1;
+          ctx.strokeRect(x + 4.5, y + 4.5, tileSize - 9, tileSize - 9);
+        }
+      }
+    }
+
+    function handleClick(event) {
+      if (solved) return;
+
+      const rect = canvas.getBoundingClientRect();
+      const x = event.clientX - rect.left;
+      const y = event.clientY - rect.top;
+
+      const col = Math.floor(x / tileSize);
+      const row = Math.floor(y / tileSize);
+
+      if (row < 0 || row >= gridSize || col < 0 || col >= gridSize) return;
+
+      toggleAt(row, col);
+      moves++;
+      solved = isSolved();
+      updateStatus();
+      drawGrid();
+    }
+
+    shuffleBtn.addEventListener("click", () => {
+      randomizeGrid();
+    });
+
+    canvas.addEventListener("click", handleClick);
+
+    initGrid();
+    drawGrid();
+    statusText.textContent = "Click New puzzle to start — goal is to turn all tiles dark.";
+
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
+
